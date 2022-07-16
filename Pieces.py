@@ -25,7 +25,6 @@ class Pawn(Piece):
             self.name = 'p'
 
     def move(self, x, y, gameboard):
-        # Piece_color = self.color
         if self.color == WHITE:
             kf = -1
 
@@ -183,7 +182,7 @@ class Queen(Piece):
         elif abs(self.x - x) == abs(self.y - y):
             x_dir, y_dir = (x - self.x) // abs(self.x - x), (y - self.y) // abs(self.y - y)
             for i in range(1, abs(self.x - x)):
-                if gameboard[(self.x + i * x_dir, self.y + i * y_dir)] == ' ':
+                if gameboard[(self.y + i * y_dir, self.x + i * x_dir)] == ' ':
                     is_Trueturn = True
                 else:
                     is_Trueturn = False
@@ -210,8 +209,7 @@ class King(Piece):
             self.name = 'k'
 
     def move(self, x, y, gameboard):
-        if abs(self.x - x) < 2 and (abs(self.y - y) < 2) and (
-                gameboard[(y, x)] == ' ' or gameboard[(y, x)].color != self.color):
+        if abs(self.x - x) < 2 and (abs(self.y - y) < 2) and (gameboard[(y, x)] == ' ' or gameboard[(y, x)].color != self.color):
             gameboard[(y, x)] = gameboard[(self.y, self.x)]
             gameboard[(self.y, self.x)] = ' '
             self.x, self.y = x, y
