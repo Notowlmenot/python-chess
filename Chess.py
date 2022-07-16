@@ -14,7 +14,7 @@ def translator(current_figure):
         y = int(current_figure[1]) - 1
     else:
         cls()
-        print('Некорректная фигура')
+        print('Некорректная фигура или ход')
         x, y = -1, -1
     return x, y
 
@@ -44,6 +44,8 @@ class Game:
             self.gameboard[(1, i)] = Pawn(WHITE, 1, i)
             self.gameboard[(6, i)] = Pawn(BLACK, 6, i)
             self.gameboard[(0, i)] = figures[i](WHITE, 0, i)
+        figures.reverse()
+        for i in range(0,8):
             self.gameboard[(7, i)] = figures[i](BLACK, 7, i)
         for i in range(2, 6):
             for k in range(0, 8):
@@ -59,7 +61,7 @@ class Game:
                     x1, y1 = translator(current_move)
                     if self.gameboard[(y, x)].name != ' ' and self.gameboard[(y, x)].color != self.playersturn:
                         cls()
-                        print('Выбрана фигура неверного цветка. Текущий ход -', self.playersturn)
+                        print('Выбрана фигура неверного цвета. Текущий ход -', self.playersturn)
                         return
                     if self.gameboard[(y, x)].move(x1, y1, self.gameboard):
                         self.colorturn = self.colorturn * -1
