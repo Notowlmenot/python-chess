@@ -1,7 +1,5 @@
 from Pieces import *
 import os
-WHITE = "white"
-BLACK = "black"
 
 
 def cls():
