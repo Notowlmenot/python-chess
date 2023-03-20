@@ -1,12 +1,11 @@
 from Pieces import *
 import os
 
-
-def cls():
+def cls():          #Очистка экрана
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def translator(current_figure):
+def translator(current_figure):          #Перевод из классического названия клетки(e.g. A1) в числовое значение, для дальнейшей ориентации по списку
     if len(current_figure) >= 2 and 'A' <= current_figure[0].upper() <= 'H' and '1' <= current_figure[1] <= '8':
         x = ord(current_figure[0].upper()) - ord('A')
         y = int(current_figure[1]) - 1
@@ -17,7 +16,7 @@ def translator(current_figure):
     return x, y
 
 
-class Game:
+class Game:         #Класс для создания сессии игры
     def __init__(self):
         self.colorturn = 1
         self.gameboard = {}
@@ -42,8 +41,6 @@ class Game:
             self.gameboard[(1, i)] = Pawn(WHITE, 1, i)
             self.gameboard[(6, i)] = Pawn(BLACK, 6, i)
             self.gameboard[(0, i)] = figures[i](WHITE, 0, i)
-        figures.reverse()
-        for i in range(0,8):
             self.gameboard[(7, i)] = figures[i](BLACK, 7, i)
         for i in range(2, 6):
             for k in range(0, 8):
@@ -68,7 +65,7 @@ class Game:
                         cls()
                         print('Некорректный ход. ')
 
-    def main(self):
+    def main(self):             #Основной цикл игры в классе сессии игры
         while True:
             self.printBoard()
             if self.colorturn == 1:
