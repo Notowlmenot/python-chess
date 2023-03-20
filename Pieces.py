@@ -2,7 +2,7 @@ WHITE = "white"
 BLACK = "black"
 
 
-class Piece:
+class Piece:            #Общий абстрактный класс
     def __init__(self, color, y, x):
         self.x = x
         self.y = y
@@ -20,14 +20,12 @@ class Pawn(Piece):
         super().__init__(color, x, y)
         if self.color == WHITE:
             self.name = 'P'
-
         else:
             self.name = 'p'
 
     def move(self, x, y, gameboard):
         if self.color == WHITE:
             kf = -1
-
         else:
             kf = 1
 
